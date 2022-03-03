@@ -11,9 +11,10 @@ class EmployeeController extends Controller
     
     public function store(Request $request){
         $data = $this->validate($request, [
-            "firstname" => "required",
-            "middlename" => "nullable",
-            "lastname" => "required"
+            "emp_no" => "required",
+            "first_name" => "required",
+            "middle_name" => "nullable",
+            "last_name" => "required"
         ]);
 
         Employee::create($data);
@@ -22,6 +23,12 @@ class EmployeeController extends Controller
 
     public function create(){
         return view("employee.create");
+    }
+
+    public function index(){
+        $employees = Employee::all();
+        return view("employee.index", compact("employees"));
+
     }
 
 }

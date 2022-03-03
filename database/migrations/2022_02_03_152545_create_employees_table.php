@@ -15,10 +15,13 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string("firstname");
-            $table->string("middlename")->nullable();
-            $table->string("lastname");
-            $table->unsignedBigInteger("salarytype_id")->nullable();
+            $table->unsignedBigInteger("user_id")->nullable()->unique();
+            $table->string("first_name");
+            $table->string("middle_name")->nullable();
+            $table->string("last_name");
+            $table->string("emp_no")->unique();
+            $table->decimal("salary", 10, 2)->default(5000000);
+            $table->unsignedBigInteger("salary_type_id")->nullable();
             $table->timestamps();
         });
     }
